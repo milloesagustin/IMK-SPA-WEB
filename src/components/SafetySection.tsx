@@ -95,31 +95,6 @@ export const SafetySection: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <div className="space-y-10">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h3 className="text-3xl font-black font-display uppercase tracking-tight text-slate-900">
-              Metodología de Mejora Continua
-            </h3>
-            <p className="text-slate-600 text-base">
-              Trabajamos bajo el ciclo de Deming (PDCA): planeando, haciendo, verificando y actuando para un aprendizaje sistemático.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {DEMING_CYCLE.map((cycle) => (
-              <div key={cycle.step} className="bg-white border border-slate-200 p-6 rounded-md shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-bold text-slate-400">PASO {cycle.step}</span>
-                  <span className="text-xs font-bold uppercase tracking-widest text-blue-700">{cycle.phaseEn}</span>
-                </div>
-                <h4 className="text-2xl font-bold font-display uppercase text-slate-900 mb-2">{cycle.phase}</h4>
-                <h5 className="text-sm font-bold text-slate-700 mb-3">{cycle.title}</h5>
-                <p className="text-slate-600 text-sm leading-relaxed">{cycle.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

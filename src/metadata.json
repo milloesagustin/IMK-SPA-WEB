@@ -1,6 +1,0 @@
-{
-  "name": "IMK Servicios Industriales",
-  "description": "Sitio web corporativo de IMK Servicios Industriales. Mantenimiento de plantas de proceso minero, montaje, ingeniería y obras civiles en Chile.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

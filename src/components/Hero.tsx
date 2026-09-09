@@ -17,13 +17,6 @@ export const Hero: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center my-auto py-12">
         <div className="max-w-4xl space-y-6">
           <div className="space-y-3">
-            <div className="mb-6 -ml-8 sm:-ml-10 lg:-ml-14">
-              <img 
-                src="/logos/logo_imk.webp" 
-                alt="Logo IMK Servicios Industriales" 
-                className="h-32 sm:h-40 lg:h-48 w-auto object-contain object-left drop-shadow-lg brightness-0 invert" 
-              />
-            </div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display tracking-tight leading-[1.05] uppercase">
               Al servicio del desarrollo productivo de la <span className="text-blue-400">minería e industria</span> en Chile
             </h1>
@@ -43,11 +36,11 @@ export const Hero: React.FC = () => {
             </a>
 
             <a
-              href="#servicios"
+              href="#nuestro-trabajo"
               className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-md border border-slate-500 text-slate-200 hover:bg-slate-800 hover:border-slate-400 text-sm font-bold tracking-wide uppercase transition-all"
             >
               <Wrench className="w-4 h-4 text-blue-400" />
-              <span>Nuestros Servicios</span>
+              <span>Nuestro Trabajo</span>
             </a>
           </div>
         </div>

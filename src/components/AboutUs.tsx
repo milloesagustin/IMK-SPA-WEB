@@ -29,7 +29,7 @@ export const AboutUs: React.FC = () => {
                   <Target className="w-6 h-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 uppercase font-display">
-                  Nuestra Misión y Especialidad
+                  Nuestra Misión y Visión
                 </h3>
               </div>
               <p className="text-slate-600 leading-relaxed text-base mb-4">
