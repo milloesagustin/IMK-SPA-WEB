@@ -11,7 +11,7 @@ export const SafetySection: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="w-8 h-[2px] bg-emerald-600" />
               <span className="text-emerald-700 font-bold text-sm tracking-widest uppercase">
-                Pilar Fundamental • Cero Daño
+                Pilar Fundamental
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-slate-900 uppercase">

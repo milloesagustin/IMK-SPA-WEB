@@ -206,28 +206,24 @@ export const CLIENTS: ClientPartner[] = [
     name: 'Tambillos',
     fullName: 'Compañía Minera Tambillos',
     type: 'Concentradora y Molienda',
-    badge: 'Planta de Beneficio'
+    badge: 'Planta de Beneficio',
+    logoUrl: '/logos/sominor_logo.png'
   },
   {
     id: 'minera-florida',
     name: 'Compañía Minera Florida SA',
     fullName: 'Minera Florida (Yamana Gold / Pan American Silver)',
     type: 'Minería Subterránea y Superficie',
-    badge: 'Planta Concentradora'
-  },
-  {
-    id: 'el-espino',
-    name: 'Mina El Espino',
-    fullName: 'Proyecto Minero El Espino (Pucobre)',
-    type: 'Proyecto Minero Cobre y Oro',
-    badge: 'Desarrollo e Infraestructura'
+    badge: 'Planta Concentradora',
+    logoUrl: '/logos/logo_florida.png'
   },
   {
     id: 'biocobre',
     name: 'Biocobre',
     fullName: 'Planta Biocobre S.A.',
     type: 'Lixiviación y Plantas Hidrometalúrgicas',
-    badge: 'Procesos Metalúrgicos'
+    badge: 'Procesos Metalúrgicos',
+    logoUrl: '/logos/logo pucobre 2.png'
   }
 ];
 

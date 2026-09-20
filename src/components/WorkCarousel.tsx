@@ -30,7 +30,7 @@ export const WorkCarousel: React.FC = () => {
           <div className="flex items-center justify-center gap-2">
             <span className="w-8 h-[2px] bg-blue-700" />
             <span className="text-blue-700 font-bold text-sm tracking-widest uppercase">
-              Galería Visual • Faena
+              Galería Visual
             </span>
             <span className="w-8 h-[2px] bg-blue-700" />
           </div>

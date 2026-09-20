@@ -1,69 +1,161 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { COMMITMENT_PILLARS } from '../data/imkData';
-import { Target, CheckCircle2 } from 'lucide-react';
+import { Cog, ChevronLeft, ChevronRight, X, Images } from 'lucide-react';
+
+interface ServicePhoto {
+  url: string;
+  title: string;
+}
+
+interface HighlightService {
+  id: string;
+  title: string;
+  subtitle: string;
+  photos: ServicePhoto[];
+}
+
+const HIGHLIGHT_SERVICES: HighlightService[] = [
+  {
+    id: 'mantenimiento-mecanico',
+    title: 'Mantenimiento mecánico mayor y menor',
+    subtitle: 'Chancadores, molinos, celdas y sistemas motrices',
+    photos: [
+      { url: '/images/foto1.jpeg', title: 'Cambio de poleas motrices y sistemas de transmisión' },
+      { url: '/images/IMG_2693.jpg', title: 'Overhaul y mantenimiento mayor de chancadores' },
+      { url: '/images/IMG_2696.jpg', title: 'Mantenimiento de celdas de flotación e impulsores' },
+      { url: '/images/IMG_2702.jpg', title: 'Alineamiento láser tridimensional de sistemas motrices' },
+    ],
+  },
+  {
+    id: 'montaje-estructuras',
+    title: 'Montaje y desmontaje de estructuras',
+    subtitle: 'Maniobras pesadas de izaje, tolvas y chutes',
+    photos: [
+      { url: '/images/foto2.jpeg', title: 'Montaje de módulos y estructuras industriales' },
+      { url: '/images/foto3.jpeg', title: 'Maniobras críticas de izaje y rigging en faena' },
+      { url: '/images/IMG_7492.jpg', title: 'Instalación de tolvas y chutes de traspaso' },
+      { url: '/images/IMG_7502.jpg', title: 'Desmontaje y ajuste estructural en parada de planta' },
+    ],
+  },
+  {
+    id: 'maestranza-fabricacion',
+    title: 'Maestranza y fabricación metálica',
+    subtitle: 'Calderería, vigas y soldadura calificada AWS',
+    photos: [
+      { url: '/images/IMG_5916.jpg', title: 'Fabricación y calderería pesada en maestranza' },
+      { url: '/images/IMG_8068.jpg', title: 'Soldadura calificada y recuperación de componentes' },
+      { url: '/images/IMG_8776.jpg', title: 'Armado de vigas estructurales y plataformas mineras' },
+      { url: '/images/IMG_9477.jpg', title: 'Aseguramiento de calidad QA/QC y acabados epóxicos' },
+    ],
+  },
+  {
+    id: 'ingenieria-obras-civiles',
+    title: 'Ingeniería aplicada y obras civiles',
+    subtitle: 'Topografía de precisión, fundaciones y losas',
+    photos: [
+      { url: '/images/IMG_1486.jpg', title: 'Fundaciones y radieres de alta resistencia para equipos' },
+      { url: '/images/IMG_9694.jpg', title: 'Obras civiles e infraestructura de soporte en faena' },
+      { url: '/images/IMG_9754.jpg', title: 'Levantamiento dimensional y control en terreno' },
+      { url: '/images/foto%20quienes%20somos%202.jpg', title: 'Topografía milimétrica e ingeniería estructural' },
+    ],
+  },
+];
 
 export const AboutUs: React.FC = () => {
+  const [activeService, setActiveService] = useState<HighlightService | null>(null);
+  const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
+
+  // Close modal with Escape key and navigate with Arrow keys
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!activeService) return;
+      if (e.key === 'Escape') {
+        setActiveService(null);
+      } else if (e.key === 'ArrowLeft') {
+        setCurrentPhotoIdx((prev) => (prev === 0 ? activeService.photos.length - 1 : prev - 1));
+      } else if (e.key === 'ArrowRight') {
+        setCurrentPhotoIdx((prev) => (prev === activeService.photos.length - 1 ? 0 : prev + 1));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeService]);
+
+  const openServiceModal = (service: HighlightService) => {
+    setActiveService(service);
+    setCurrentPhotoIdx(0);
+  };
+
+  const nextPhoto = () => {
+    if (!activeService) return;
+    setCurrentPhotoIdx((prev) => (prev === activeService.photos.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevPhoto = () => {
+    if (!activeService) return;
+    setCurrentPhotoIdx((prev) => (prev === 0 ? activeService.photos.length - 1 : prev - 1));
+  };
+
   return (
     <section id="quienes-somos" className="py-24 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-3 mb-16">
+        
+        {/* Title Header */}
+        <div className="space-y-3 mb-12">
           <div className="flex items-center gap-2">
             <span className="w-8 h-[2px] bg-blue-700" />
             <span className="text-blue-700 font-bold text-sm tracking-widest uppercase">
-              Conócenos • Trayectoria y Solidez
+              Conócenos
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-slate-900 uppercase">
             Quiénes Somos
           </h2>
-          <p className="text-slate-600 max-w-2xl text-lg">
-            Aliados estratégicos de la gran y mediana minería e industria pesada chilena, entregando soluciones de mantenimiento técnico y montaje con máxima disponibilidad operativa.
-          </p>
         </div>
 
+        {/* Content & Main Image */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           <div className="space-y-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-slate-100 text-blue-700 rounded-md">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 uppercase font-display">
-                  Nuestra Misión y Visión
-                </h3>
-              </div>
-              <p className="text-slate-600 leading-relaxed text-base mb-4">
-                Somos una empresa dedicada principalmente al <strong>mantenimiento de plantas de proceso minero</strong>. Realizamos trabajos tales como, montaje de equipos y estructuras, fabricación de estructuras metálicas, ingeniería y obras civiles.
+            <div className="space-y-4">
+              <p className="text-slate-700 leading-relaxed text-base sm:text-lg">
+                Somos una empresa dedicada principalmente al mantenimiento de plantas de proceso minero. Realizamos trabajos tales como, montaje de equipos y estructuras, fabricación de estructuras metálicas, ingeniería y obras civiles.
               </p>
-              <p className="text-slate-600 leading-relaxed text-base">
-                En <strong>IMK Servicios Industriales</strong>, nos enfocamos en llevar un servicio de acuerdo a los requerimientos de cada mandante, para ser líderes en el rubro minero e industrial. Somos un aliado de nuestros clientes, brindándoles soluciones concretas para un desarrollo en la productividad eficiente, cuidando en primer lugar a todos nuestros trabajadores, activos y medio ambiente.
+              <p className="text-slate-700 leading-relaxed text-base sm:text-lg">
+                En IMK Servicios Industriales, nos enfocamos en llevar un servicio de acuerdo a los requerimientos de cada mandante, para ser líderes en el rubro minero e industrial. Somos un aliado de nuestros clientes, brindándoles soluciones concretas para un desarrollo en la productividad eficiente, cuidando en primer lugar a todos nuestros trabajadores, activos y medio ambiente.
               </p>
             </div>
 
-            <div className="pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-700 font-medium">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span>Mantenimiento mecánico mayor y menor</span>
+            {/* 4 Prominent Services with Gear Icons & Carousel Trigger */}
+            <div className="pt-6 border-t border-slate-200 space-y-3">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">
+                Nuestros servicios:
+              </span>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {HIGHLIGHT_SERVICES.map((srv) => (
+                  <button
+                    key={srv.id}
+                    id={`servicio-btn-${srv.id}`}
+                    type="button"
+                    onClick={() => openServiceModal(srv)}
+                    className="group p-4 bg-slate-50 hover:bg-blue-50/70 border border-slate-200 hover:border-blue-600 rounded-lg text-left transition-all duration-200 shadow-sm hover:shadow cursor-pointer flex items-start gap-3 w-full"
+                  >
+                    <div className="w-10 h-10 rounded-md bg-white border border-slate-200 group-hover:border-blue-400 group-hover:bg-blue-600 text-blue-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-xs">
+                      <Cog className="w-5 h-5 transition-transform duration-500 group-hover:rotate-90" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-sm text-slate-900 group-hover:text-blue-900 leading-snug">
+                        {srv.title}
+                      </h4>
+                      <div className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-blue-700 group-hover:text-blue-800">
+                        <Images className="w-3.5 h-3.5" />
+                        <span>Ver fotos</span>
+                      </div>
+                    </div>
+                  </button>
+                ))}
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span>Montaje y desmontaje de estructuras</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span>Maestranza y fabricación metálica</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                <span>Ingeniería aplicada y obras civiles</span>
-              </div>
-            </div>
-
-            <div className="p-6 bg-slate-50 border-l-4 border-l-blue-700">
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-700 block mb-2">Visión Corporativa</span>
-              <p className="text-lg font-medium text-slate-900 italic">
-                "Ser líderes en el rubro minero e industrial, brindando soluciones concretas para la productividad eficiente, consolidándonos como el socio de confianza predilecto de las principales faenas del país."
-              </p>
             </div>
           </div>
 
@@ -71,11 +163,12 @@ export const AboutUs: React.FC = () => {
             <img
               src="/images/foto%20quienes%20somos.jpg"
               alt="Soldador y Mantenimiento IMK"
-              className="w-full h-[500px] object-cover"
+              className="w-full h-[520px] object-cover"
             />
           </div>
         </div>
 
+        {/* Commitment Pillars */}
         <div className="space-y-10">
           <div className="text-center max-w-3xl mx-auto">
             <h3 className="text-3xl font-black font-display uppercase tracking-tight text-slate-900">
@@ -103,6 +196,108 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Superposed Modal Carousel */}
+      {activeService && (
+        <div
+          id="modal-carrusel-servicio"
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6"
+          onClick={() => setActiveService(null)}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden border border-slate-200 relative flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+              <div className="flex items-center gap-3 min-w-0 pr-4">
+                <div className="w-8 h-8 rounded bg-blue-700/60 border border-blue-500/40 flex items-center justify-center shrink-0">
+                  <Cog className="w-4 h-4 text-blue-300 animate-spin" style={{ animationDuration: '6s' }} />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-base sm:text-lg uppercase font-display tracking-wide text-white truncate">
+                    {activeService.title}
+                  </h3>
+                  <span className="text-xs text-blue-300">
+                    Foto {currentPhotoIdx + 1} de {activeService.photos.length}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                id="cerrar-modal-servicio"
+                type="button"
+                onClick={() => setActiveService(null)}
+                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors shrink-0"
+                aria-label="Cerrar carrusel"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Modal Image Carousel */}
+            <div className="relative bg-slate-950 flex items-center justify-center aspect-16/10 sm:aspect-16/9 overflow-hidden">
+              <img
+                src={activeService.photos[currentPhotoIdx].url}
+                alt={activeService.photos[currentPhotoIdx].title}
+                className="w-full h-full object-cover transition-opacity duration-300"
+              />
+
+              {/* Prev Button */}
+              <button
+                type="button"
+                onClick={prevPhoto}
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-blue-700 text-white transition-colors backdrop-blur-xs shadow-lg"
+                aria-label="Foto anterior"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              {/* Next Button */}
+              <button
+                type="button"
+                onClick={nextPhoto}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-blue-700 text-white transition-colors backdrop-blur-xs shadow-lg"
+                aria-label="Siguiente foto"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Modal Footer with Thumbnails */}
+            <div className="p-4 bg-slate-100 border-t border-slate-200 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 overflow-x-auto py-1">
+                {activeService.photos.map((photo, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setCurrentPhotoIdx(idx)}
+                    className={`relative w-14 h-11 sm:w-16 sm:h-12 rounded overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
+                      currentPhotoIdx === idx
+                        ? 'border-blue-700 ring-2 ring-blue-400 scale-105'
+                        : 'border-slate-300 opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={photo.url}
+                      alt={`Miniatura ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveService(null)}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs uppercase tracking-wider rounded transition-colors shrink-0"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

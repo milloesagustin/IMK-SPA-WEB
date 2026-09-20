@@ -27,8 +27,8 @@ export const Footer: React.FC = () => {
               <li><a href="#hero" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Inicio</a></li>
               <li><a href="#quienes-somos" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Empresa</a></li>
               <li><a href="#seguridad" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Seguridad</a></li>
-              <li><a href="#servicios" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Servicios</a></li>
-              <li><a href="#experiencia" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Experiencia</a></li>
+              <li><a href="#contacto" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Cotizar</a></li>
+              <li><a href="#trabaja-con-nosotros" className="hover:text-blue-400 flex items-center gap-1"><ChevronRight className="w-4 h-4" /> Trabaja con Nosotros</a></li>
             </ul>
           </div>
 

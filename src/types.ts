@@ -44,3 +44,11 @@ export interface ContactFormData {
   servicioInteres: string;
   mensaje: string;
 }
+
+export interface WorkWithUsFormData {
+  nombreCompleto: string;
+  telefono: string;
+  email: string;
+  experiencia: string;
+  cvFile: File | null;
+}

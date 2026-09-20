@@ -6,6 +6,7 @@ import { SafetySection } from './components/SafetySection';
 import { WorkCarousel } from './components/WorkCarousel';
 import { ClientsSlider } from './components/ClientsSlider';
 import { ContactSection } from './components/ContactSection';
+import { WorkWithUsSection } from './components/WorkWithUsSection';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
@@ -36,8 +37,11 @@ export default function App() {
         {/* Clientes & Faenas Mineras (Slider Infinito & Logos) */}
         <ClientsSlider />
 
-        {/* 5. Contacto & Formulario con Redirección a WhatsApp */}
+        {/* 5. Contacto & Formulario de Cotización */}
         <ContactSection selectedServiceTitle={serviceForQuote} />
+
+        {/* 6. Trabaja con Nosotros & Formulario de Postulación */}
+        <WorkWithUsSection />
       </main>
 
       {/* Footer Corporativo */}
