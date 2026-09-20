@@ -1,16 +1,12 @@
 import express from 'express';
-import path from 'path';
 import multer from 'multer';
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
-import { createServer as createViteServer } from 'vite';
 
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3000;
 
-// La API Key ahora se extrae de forma segura de las variables de entorno
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(RESEND_API_KEY);
 
@@ -21,7 +17,7 @@ const upload = multer({
 
 app.use(express.json());
 
-// API route for job application with real file attachment
+// Ruta de la API
 app.post('/api/postular', upload.single('cv'), async (req, res) => {
   try {
     const { nombreCompleto, telefono, email, experiencia } = req.body;
@@ -65,14 +61,14 @@ ${experiencia || 'Sin resumen ingresado'}
         </div>
 
         <p style="margin-top: 25px; font-size: 12px; color: #94a3b8; text-align: center;">
-          Este correo fue generado desde el portal web de IMK Servicios Industriales SpA. El archivo PDF/Word se encuentra adjunto para descarga directa.
+          Este correo fue generado desde el portal web de IMK Servicios Industriales SpA.
         </p>
       </div>
     `;
 
     const { data, error } = await resend.emails.send({
       from: 'IMK Postulaciones <onboarding@resend.dev>',
-      to: ['contacto.novabuildstudio@gmail.com'],
+      to: ['contacto.novabuildstudio@gmail.com'], // Asegúrate de que este es tu correo de Resend
       subject: `Nueva Postulación Laboral IMK - ${nombreCompleto}`,
       replyTo: email,
       html: htmlContent,
@@ -92,25 +88,8 @@ ${experiencia || 'Sin resumen ingresado'}
     return res.status(200).json({ success: true, data });
   } catch (err: any) {
     console.error('Server error in /api/postular:', err);
-    return res.status(500).json({ error: err.message || 'Error interno al procesar la postulación' });
+    return res.status(500).json({ error: err.message || 'Error interno' });
   }
 });
 
-// Configuración adaptativa: Servidor local vs Serverless en Vercel
-if (process.env.NODE_ENV !== "production") {
-  async function startServer() {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-    
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on http://0.0.0.0:${PORT}`);
-    });
-  }
-  startServer();
-}
-
-// Exportación necesaria para que Vercel procese la API correctamente
 export default app;
