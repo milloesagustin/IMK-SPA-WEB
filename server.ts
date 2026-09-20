@@ -8,14 +8,15 @@ import { createServer as createViteServer } from 'vite';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
+// La API Key ahora se extrae de forma segura de las variables de entorno
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(RESEND_API_KEY);
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: 10 * 1024 * 1024 } // Límite de 10MB
 });
 
 app.use(express.json());
@@ -95,24 +96,21 @@ ${experiencia || 'Sin resumen ingresado'}
   }
 });
 
-async function startServer() {
-  if (process.env.NODE_ENV !== "production") {
+// Configuración adaptativa: Servidor local vs Serverless en Vercel
+if (process.env.NODE_ENV !== "production") {
+  async function startServer() {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+    
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on http://0.0.0.0:${PORT}`);
     });
   }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
-  });
+  startServer();
 }
 
-startServer();
+// Exportación necesaria para que Vercel procese la API correctamente
+export default app;
