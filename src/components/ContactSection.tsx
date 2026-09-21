@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { IMK_CONTACT } from '../data/imkData';
 import { ContactFormData } from '../types';
-import { MapPin, Phone, Mail, Globe, Instagram, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, Instagram, CheckCircle2 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ContactSectionProps {
   selectedServiceTitle?: string;
@@ -39,7 +40,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedServiceT
     const mensaje = formData.mensaje.trim();
 
     const formattedMessage = `*COTIZACIÓN WEB - IMK*\n━━━━━━━━━━━━━━━━━━━━\n🏭 *Empresa:* ${nombre}\n📧 *Email:* ${email}\n📱 *Teléfono:* ${telefono}\n⚙️ *Servicio:* ${servicio}\n\n📋 *Mensaje:*\n${mensaje}\n━━━━━━━━━━━━━━━━━━━━`;
-    const targetPhone = IMK_CONTACT.phone1Raw;
+    const targetPhone = IMK_CONTACT.whatsappOfficialRaw || '56944934723';
     const encodedText = encodeURIComponent(formattedMessage);
     const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedText}`;
 
@@ -148,7 +149,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedServiceT
                     <option value="Proyectos de montaje y desmontaje">Proyectos de montaje y desmontaje</option>
                     <option value="Desarrollo de obras de ingeniería">Desarrollo de obras de ingeniería</option>
                     <option value="Obras civiles y topografía">Obras civiles y topografía</option>
-                    <option value="Parada de Planta Urgente">Parada de Planta Urgente</option>
+                    <option value="Mantenimiento de Emergencia">Mantenimiento de Emergencia</option>
                     <option value="Otro">Otro Requerimiento</option>
                   </select>
                 </div>
@@ -156,10 +157,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedServiceT
                   <label className="block text-sm font-bold text-slate-700 mb-1">Mensaje *</label>
                   <textarea name="mensaje" required rows={4} value={formData.mensaje} onChange={handleChange} className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" />
                 </div>
-                <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider rounded transition-colors">
-                  <MessageSquare className="w-5 h-5" />
+                <button type="submit" className="w-full flex items-center justify-center gap-2.5 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider rounded transition-colors">
+                  <WhatsAppIcon className="w-5 h-5 fill-current" />
                   <span>Enviar por WhatsApp</span>
-                  <Send className="w-4 h-4 ml-2" />
                 </button>
               </form>
             </div>
