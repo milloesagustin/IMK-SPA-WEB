@@ -9,8 +9,8 @@
 
 :root {
   font-family: 'Barlow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #ffffff;
-  color: #334155;
+  background-color: #0b1329;
+  color: #f1f5f9;
 }
 
 .font-display {
@@ -52,4 +52,3 @@
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-

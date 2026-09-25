@@ -24,26 +24,29 @@ export const WorkCarousel: React.FC = () => {
   const marqueeImages = [...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES];
 
   return (
-    <section id="nuestro-trabajo" className="py-24 bg-slate-100 border-b border-slate-200 overflow-hidden">
+    <section id="nuestro-trabajo" className="py-24 bg-slate-900 border-b border-slate-800 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="space-y-3 text-center">
           <div className="flex items-center justify-center gap-2">
-            <span className="w-8 h-[2px] bg-blue-700" />
-            <span className="text-blue-700 font-bold text-sm tracking-widest uppercase">
+            <span className="w-8 h-[2px] bg-blue-500" />
+            <span className="text-blue-400 font-bold text-sm tracking-widest uppercase">
               Galería Visual
             </span>
-            <span className="w-8 h-[2px] bg-blue-700" />
+            <span className="w-8 h-[2px] bg-blue-500" />
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-slate-900 uppercase">
+          <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-white uppercase">
             Nuestro Trabajo en Terreno
           </h2>
+          <p className="text-slate-300 text-base max-w-2xl mx-auto">
+            Registro fotográfico de nuestras maniobras, paradas de planta, soldadura de alta resistencia y montaje estructural en faenas mineras e industriales.
+          </p>
         </div>
       </div>
 
-      <div className="relative w-full overflow-hidden py-4 bg-slate-100">
+      <div className="relative w-full overflow-hidden py-4 bg-slate-900">
         {/* Gradient overlays for smooth enter/exit edges */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-slate-100 to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-slate-100 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none" />
 
         {/* Marquee container with customized slow duration */}
         <div 
@@ -53,7 +56,7 @@ export const WorkCarousel: React.FC = () => {
           {marqueeImages.map((imgSrc, idx) => (
             <div
               key={idx}
-              className="relative shrink-0 w-[280px] sm:w-[400px] h-[220px] sm:h-[300px] rounded-lg overflow-hidden group shadow-md bg-white border border-slate-200"
+              className="relative shrink-0 w-[280px] sm:w-[400px] h-[220px] sm:h-[300px] rounded-xl overflow-hidden group shadow-2xl bg-slate-950 border-2 border-slate-800 hover:border-blue-500 transition-all duration-300"
             >
               <img
                 src={imgSrc}
@@ -61,9 +64,9 @@ export const WorkCarousel: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
-              <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
-                <Camera className="w-5 h-5 text-slate-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-300" />
+              <div className="absolute top-4 right-4 w-10 h-10 bg-slate-900/90 border border-slate-700 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
+                <Camera className="w-5 h-5 text-blue-400" />
               </div>
             </div>
           ))}

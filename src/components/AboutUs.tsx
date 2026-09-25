@@ -98,18 +98,21 @@ export const AboutUs: React.FC = () => {
   };
 
   return (
-    <section id="quienes-somos" className="py-24 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="quienes-somos" className="py-24 bg-slate-900 border-b border-slate-800 text-white relative">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title Header */}
         <div className="space-y-3 mb-12">
           <div className="flex items-center gap-2">
-            <span className="w-8 h-[2px] bg-blue-700" />
-            <span className="text-blue-700 font-bold text-sm tracking-widest uppercase">
+            <span className="w-8 h-[2px] bg-blue-500" />
+            <span className="text-blue-400 font-bold text-sm tracking-widest uppercase">
               Conócenos
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-slate-900 uppercase">
+          <h2 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-white uppercase">
             Quiénes Somos
           </h2>
         </div>
@@ -118,18 +121,18 @@ export const AboutUs: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-slate-700 leading-relaxed text-base sm:text-lg">
-                Somos una empresa dedicada principalmente al mantenimiento de plantas de proceso minero. Realizamos trabajos tales como, montaje de equipos y estructuras, fabricación de estructuras metálicas, ingeniería y obras civiles.
+              <p className="text-slate-200 leading-relaxed text-base sm:text-lg">
+                Somos una empresa dedicada principalmente al <strong className="text-white">mantenimiento de plantas de proceso minero</strong>. Realizamos trabajos tales como, montaje de equipos y estructuras, fabricación de estructuras metálicas, ingeniería y obras civiles.
               </p>
-              <p className="text-slate-700 leading-relaxed text-base sm:text-lg">
+              <p className="text-slate-300 leading-relaxed text-base sm:text-lg">
                 En IMK Servicios Industriales, nos enfocamos en llevar un servicio de acuerdo a los requerimientos de cada mandante, para ser líderes en el rubro minero e industrial. Somos un aliado de nuestros clientes, brindándoles soluciones concretas para un desarrollo en la productividad eficiente, cuidando en primer lugar a todos nuestros trabajadores, activos y medio ambiente.
               </p>
             </div>
 
             {/* 4 Prominent Services with Gear Icons & Carousel Trigger */}
-            <div className="pt-6 border-t border-slate-200 space-y-3">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">
-                Nuestros servicios:
+            <div className="pt-6 border-t border-slate-800 space-y-3">
+              <span className="text-xs font-extrabold text-blue-400 uppercase tracking-widest block">
+                Nuestros servicios principales:
               </span>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -139,18 +142,18 @@ export const AboutUs: React.FC = () => {
                     id={`servicio-btn-${srv.id}`}
                     type="button"
                     onClick={() => openServiceModal(srv)}
-                    className="group p-4 bg-slate-50 hover:bg-blue-50/70 border border-slate-200 hover:border-blue-600 rounded-lg text-left transition-all duration-200 shadow-sm hover:shadow cursor-pointer flex items-start gap-3 w-full"
+                    className="group p-4 bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-blue-500 rounded-xl text-left transition-all duration-200 shadow-md hover:shadow-xl cursor-pointer flex items-start gap-3 w-full"
                   >
-                    <div className="w-10 h-10 rounded-md bg-white border border-slate-200 group-hover:border-blue-400 group-hover:bg-blue-600 text-blue-700 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-xs">
+                    <div className="w-10 h-10 rounded-lg bg-blue-950/90 border border-blue-500/40 group-hover:border-blue-400 group-hover:bg-blue-600 text-blue-400 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-xs">
                       <Cog className="w-5 h-5 transition-transform duration-500 group-hover:rotate-90" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-sm text-slate-900 group-hover:text-blue-900 leading-snug">
+                      <h4 className="font-bold text-sm text-white group-hover:text-blue-300 leading-snug">
                         {srv.title}
                       </h4>
-                      <div className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-blue-700 group-hover:text-blue-800">
+                      <div className="mt-2 flex items-center gap-1.5 text-[11px] font-bold text-blue-400 group-hover:text-blue-300">
                         <Images className="w-3.5 h-3.5" />
-                        <span>Ver fotos</span>
+                        <span>Ver fotos en faena</span>
                       </div>
                     </div>
                   </button>
@@ -159,22 +162,22 @@ export const AboutUs: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative rounded-lg overflow-hidden shadow-sm">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-800 group">
             <img
               src="/images/foto%20quienes%20somos.jpg"
               alt="Soldador y Mantenimiento IMK"
-              className="w-full h-[520px] object-cover"
+              className="w-full h-[520px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </div>
 
         {/* Commitment Pillars */}
-        <div className="space-y-10">
+        <div className="space-y-10 pt-6">
           <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-3xl font-black font-display uppercase tracking-tight text-slate-900">
+            <h3 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-white">
               Nuestro Compromiso
             </h3>
-            <p className="text-slate-600 text-base mt-2">
+            <p className="text-slate-400 text-base mt-2">
               Tres pilares fundamentales sobre los cuales cimentamos cada contrato y servicio minero.
             </p>
           </div>
@@ -183,12 +186,16 @@ export const AboutUs: React.FC = () => {
             {COMMITMENT_PILLARS.map((pillar) => (
               <div
                 key={pillar.number}
-                className="p-8 bg-slate-50 border border-slate-200 rounded-md"
+                className="relative p-8 bg-slate-950 text-white border border-slate-800 rounded-xl shadow-2xl overflow-hidden group hover:border-blue-500 transition-all duration-300"
               >
-                <h4 className="text-2xl font-black text-blue-700 uppercase font-display mb-4">
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-sky-500 to-blue-700" />
+                <span className="text-3xl font-display font-black text-blue-400 tracking-wider block mb-2 opacity-90">
+                  {pillar.number}
+                </span>
+                <h4 className="text-2xl font-black text-white uppercase font-display mb-3 tracking-wide">
                   {pillar.title}
                 </h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-300 text-sm leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
@@ -265,17 +272,17 @@ export const AboutUs: React.FC = () => {
             </div>
 
             {/* Modal Footer with Thumbnails */}
-            <div className="p-4 bg-slate-100 border-t border-slate-200 flex items-center justify-between gap-3">
+            <div className="p-4 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2 overflow-x-auto py-1">
                 {activeService.photos.map((photo, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => setCurrentPhotoIdx(idx)}
-                    className={`relative w-14 h-11 sm:w-16 sm:h-12 rounded overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
+                    className={`relative w-14 h-11 sm:w-16 sm:h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
                       currentPhotoIdx === idx
-                        ? 'border-blue-700 ring-2 ring-blue-400 scale-105'
-                        : 'border-slate-300 opacity-60 hover:opacity-100'
+                        ? 'border-blue-500 ring-2 ring-blue-400 scale-105'
+                        : 'border-slate-700 opacity-60 hover:opacity-100'
                     }`}
                   >
                     <img
@@ -290,7 +297,7 @@ export const AboutUs: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveService(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs uppercase tracking-wider rounded transition-colors shrink-0"
+                className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shrink-0"
               >
                 Cerrar
               </button>

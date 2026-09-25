@@ -13,8 +13,8 @@ export const IMK_CONTACT = {
   email1: 'imk@imkspa.cl',
   email2: 'isaacjimenez@imkspa.cl',
   website: 'www.imkspa.cl',
-  instagram: '@imk.serv.industriales',
-  instagramUrl: 'https://instagram.com/imk.serv.industriales',
+  instagram: '@imkserviciosindustriales',
+  instagramUrl: 'https://instagram.com/imkserviciosindustriales',
   safetyRecord: 'Índice de accidentabilidad 0',
   safetyAffiliation: 'Adheridos a Mutual de Seguridad',
 };
